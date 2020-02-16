@@ -226,7 +226,7 @@ void Chip8::decode_and_execute(const uint16_t opcode)
     }
 }
 
-Chip8::Chip8() : V({0}), I(0), PC(0x200), DT(0), ST(0), gui(1024, 512)
+Chip8::Chip8(const std::string &file_name) : V({0}), I(0), PC(0x200), DT(0), ST(0), gui(1024, 512)
 {
     memory =
         {
@@ -249,6 +249,11 @@ Chip8::Chip8() : V({0}), I(0), PC(0x200), DT(0), ST(0), gui(1024, 512)
         };
 
     memory.resize(4096);
+
+    if (!file_name.empty())
+    {
+        load_program(file_name);
+    }
 }
 
 Chip8::~Chip8()

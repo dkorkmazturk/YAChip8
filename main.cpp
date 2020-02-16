@@ -13,8 +13,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    YAChip8::Chip8 chip8;
-    chip8.load_program(romName);
+    YAChip8::Chip8 chip8(romName);
     chip8.run();
 
     return 0;
