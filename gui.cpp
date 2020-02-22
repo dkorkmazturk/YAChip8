@@ -1,7 +1,6 @@
 #include "gui.h"
 #include <algorithm>
 #include <bitset>
-#include <iostream>
 
 namespace YAChip8
 {
