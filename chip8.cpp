@@ -7,6 +7,12 @@
 
 namespace YAChip8
 {
+
+std::pair<int, int> operator *(const std::pair<int, int>& lhs, const int rhs)
+{
+    return std::pair<int, int>(lhs.first * rhs, lhs.second * rhs);
+}
+
 static std::atomic<bool> runTimerThread(true);
 static std::mutex timerMutex;
 
@@ -226,7 +232,8 @@ void Chip8::decode_and_execute(const uint16_t opcode)
     }
 }
 
-Chip8::Chip8(const std::string &file_name) : V({0}), I(0), PC(0x200), DT(0), ST(0), gui(1024, 512)
+Chip8::Chip8(const std::pair<const int, const int> &logical_size, const int scale_factor, const std::string &file_name)
+    : V({0}), I(0), PC(0x200), DT(0), ST(0), gui(logical_size * scale_factor, logical_size)
 {
     memory =
         {
@@ -260,7 +267,9 @@ Chip8::~Chip8()
 {
     runTimerThread = false;
     if (timerThread.joinable())
+    {
         timerThread.join();
+    }
 }
 
 void Chip8::load_program(const std::string &file_name)

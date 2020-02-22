@@ -11,8 +11,8 @@ namespace YAChip8
 class GUI
 {
 private:
-    const int texWidth = 64;
-    const int texHeight = 32;
+    const int texWidth;
+    const int texHeight;
 
     SDL_Window *window;
     SDL_Renderer *renderer;
@@ -21,7 +21,7 @@ private:
     std::vector<uint8_t> vram;
 
 public:
-    explicit GUI(const int x = 1024, const int y = 512, const std::string &title = "");
+    GUI(const std::pair<const int, const int> &screen_size, const std::pair<const int, const int> &logical_size, const std::string &title = "");
     ~GUI();
     GUI(const GUI &) = delete;
     GUI &operator=(const GUI &) = delete;

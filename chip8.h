@@ -32,7 +32,7 @@ private:
     void decode_and_execute(const uint16_t opcode);
 
 public:
-    explicit Chip8(const std::string &file_name = "");
+    Chip8(const std::pair<const int, const int> &logical_size, const int scale_factor, const std::string &file_name);
     ~Chip8();
     Chip8(const Chip8 &) = delete;
     Chip8 &operator=(const Chip8 &) = delete;

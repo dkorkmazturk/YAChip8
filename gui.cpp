@@ -11,14 +11,19 @@ static inline std::bitset<8> bitsetReverse(const std::bitset<8> &bitset)
     return std::bitset<8>(str);
 }
 
-GUI::GUI(const int x, const int y, const std::string &title) : vram(texWidth * texHeight, 0)
+GUI::GUI(const std::pair<const int, const int> &screen_size, const std::pair<const int, const int> &logical_size, const std::string &title) : texWidth(logical_size.first), texHeight(logical_size.second), vram(texWidth * texHeight, 0)
 {
     if (SDL_Init(SDL_INIT_VIDEO))
     {
         throw std::runtime_error("Unable to initialize SDL video subsystem: " + std::string(SDL_GetError()));
     }
 
-    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, x, y, SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_FOCUS);
+    int windowsFlags = SDL_WINDOW_RESIZABLE | SDL_WINDOW_INPUT_FOCUS | SDL_WINDOW_ALLOW_HIGHDPI;
+    if (screen_size.first == 0 && screen_size.second == 0)
+    {
+        windowsFlags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+    }
+    window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screen_size.first, screen_size.second, windowsFlags);
     if (window == nullptr)
     {
         throw std::runtime_error("Unable to create an SDL window: " + std::string(SDL_GetError()));
