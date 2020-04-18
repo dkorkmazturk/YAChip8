@@ -8,7 +8,7 @@
 namespace YAChip8
 {
 
-std::pair<int, int> operator *(const std::pair<int, int>& lhs, const int rhs)
+static std::pair<int, int> operator *(const std::pair<int, int>& lhs, const int rhs)
 {
     return std::pair<int, int>(lhs.first * rhs, lhs.second * rhs);
 }
