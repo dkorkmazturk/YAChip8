@@ -64,7 +64,7 @@ void Chip8::decode_and_execute(const uint16_t opcode)
         }
         else
         {
-            throw std::runtime_error("Illegal Chip8-8 instruction");
+            throw std::runtime_error("Illegal CHIP-8 instruction");
         }
         break;
     case 0x2:
@@ -127,7 +127,7 @@ void Chip8::decode_and_execute(const uint16_t opcode)
             V[x] <<= 1;
             break;
         default:
-            throw std::runtime_error("Illegal Chip8-8 instruction");
+            throw std::runtime_error("Illegal CHIP-8 instruction");
         }
         break;
     case 0x9:
@@ -167,7 +167,7 @@ void Chip8::decode_and_execute(const uint16_t opcode)
         }
         else
         {
-            throw std::runtime_error("Illegal Chip8-8 instruction");
+            throw std::runtime_error("Illegal CHIP-8 instruction");
         }
     }
     break;
@@ -226,7 +226,7 @@ void Chip8::decode_and_execute(const uint16_t opcode)
             }
             break;
         default:
-            throw std::runtime_error("Illegal Chip8-8 instruction");
+            throw std::runtime_error("Illegal CHIP-8 instruction");
         }
         break;
     }
